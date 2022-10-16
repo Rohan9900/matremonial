@@ -1,38 +1,109 @@
-.App {
-  text-align: center;
+.loader {
+  width: 30%;
+  height: 5px;
+  background-image: linear-gradient(to right, #9795EF, #F9D5D1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html{
+  scroll-behavior: smooth;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.loaderComp, marquee {
+  width: 100%;
+  position: fixed;
+  top: 0px;
+}
+
+a {
+  color: rgb(255, 130, 150);
+}
+
+.logo_img {
+  animation: logo_animation 3s infinite;
+}
+
+@keyframes logo_animation {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+.home_vid {
+  backface-visibility: hidden;
+  background: url(https://img2.shaadi.com/assests/2018/vip-shaadi/vip-nonvideos.jpg) no-repeat scroll 0 0 #000;
+  background-size: cover;
+  min-height: 100%;
+  min-width: 100%;
+  bottom: 0;
+  height: auto;
+  perspective: 1000;
+  position: fixed;
+  right: 0;
+  width: auto;
+  z-index: -1;
+}
+
+
+.bac {
+  background: rgba(0, 0, 0);
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
   flex-direction: column;
-  align-items: center;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  opacity: 0.4;
+}
+
+.bac h1, .proceed_bottom h4 {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.proceed_bottom h4 {
+  font-size: 1.5em;
+  font-weight: 200;
+  margin: 5px;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.css-78trlr-MuiButtonBase-root-MuiIconButton-root:hover {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.proceed_bottom {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.homeFirst {
+  left: 0;
+  top: 0;
+  z-index: 99;
+  transition: background-color 300ms ease;
+  width: 100%;
+  text-align: center;
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 }
