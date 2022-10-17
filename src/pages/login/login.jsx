@@ -1,12 +1,45 @@
 import { Box, Button, Card, Container, Grid, makeStyles, Stack, TextField, Typography } from '@mui/material';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
+import firestore from '../../firebase/firebase';
+import { toast } from 'react-toastify';
 
 
 export default function Login() {
 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
+    const navigate = useNavigate();
+
+
+    const submitLogin = async () => {
+
+        let isCorrect = false;
+
+        const firestoreRef = firestore.collection('User');
+
+        const queryRef = await firestoreRef.where("email", '==', email.trim())
+            .where("password", '==', password.trim())
+            .get()
+
+
+        queryRef.forEach((doc) => {
+            console.log(doc.data());
+            let temp = doc.data();
+            localStorage.setItem("user", JSON.stringify(doc.data()));
+            localStorage.setItem("userId", JSON.stringify(doc.id));
+            isCorrect = true;
+            navigate("/");
+        });
+
+        if (isCorrect == false) {
+
+            toast.error("Please enter correct credentials");
+        }
+
+    }
 
     return (
         <div style={{
@@ -44,10 +77,16 @@ export default function Login() {
                                         Login
                                     </Typography>
                                     <Box>
-                                        <TextField color="secondary" id="standard-basic" fullWidth label="Email" variant="standard" />
+                                        <TextField color="secondary" id="standard-basic" fullWidth label="Email" name="email" type="email" variant="standard" value={email}
+                                            onChange={(e) => {
+                                                setEmail(e.target.value);
+                                            }} />
                                     </Box>
                                     <Box>
-                                        <TextField color="secondary" id="standard-basic" fullWidth label="Password" variant="standard" />
+                                        <TextField color="secondary" id="standard-basic" fullWidth label="Password" name="password" type="password" variant="standard" value={password}
+                                            onChange={(e) => {
+                                                setPassword(e.target.value);
+                                            }} />
                                     </Box>
                                     <Box>
                                         <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.7em", fontWeight: "500" }}>
@@ -56,7 +95,7 @@ export default function Login() {
 
                                         </div>
                                     </Box>
-                                    <Button sx={{ backgroundImage: "linear-gradient(to right, #fda790, #ff5083)" }} variant="contained">Login</Button>
+                                    <Button onClick={submitLogin} sx={{ backgroundImage: "linear-gradient(to right, #fda790, #ff5083)" }} variant="contained">Login</Button>
                                 </Stack>
 
 

@@ -37,10 +37,29 @@ a {
   }
 }
 
+.divAnimate {
+  animation: div_animation 8s;
+  animation-delay: 2s;
+}
+
+@keyframes div_animation {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  50% {
+    transform: translateX(10%);
+
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
 .home_vid {
   backface-visibility: hidden;
-  background: url(https://img2.shaadi.com/assests/2018/vip-shaadi/vip-nonvideos.jpg)
-    no-repeat scroll 0 0 #000;
+  background: url(https://img2.shaadi.com/assests/2018/vip-shaadi/vip-nonvideos.jpg) no-repeat scroll 0 0 #000;
   background-size: cover;
   min-height: 100%;
   min-width: 100%;
@@ -51,6 +70,19 @@ a {
   right: 0;
   width: auto;
   z-index: -1;
+}
+
+.listTable tr td:nth-child(odd) {
+  padding: 2px 5px;
+  font-size: 0.8em;
+  color: rgb(176, 176, 176);
+}
+
+
+
+.listTable tr td:nth-child(even) {
+  padding: 2px 5px;
+  font-size: 0.8em;
 }
 
 .bac {
@@ -111,14 +143,15 @@ a {
 
 .css-h089nv {
   width: 100%;
-  background-image: url(https://img2.shaadi.com/assests/semlandingpage2/home-banner-ri.webp);
+  background-image: url('https://wallpaperset.com/w/full/9/8/4/480087.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: initial;
   background-origin: initial;
   background-clip: initial;
   background-color: initial;
-  background-size: cover !important;
+  height: 100vh;
+  background-size: 100% 100% !important;
 }
 
 .container,
@@ -263,6 +296,7 @@ h6 {
   top: 14px;
   width: 0;
 }
+
 .PreferenceForm_ageTo__D9NQw {
   display: inline-block;
   width: 16%;
@@ -310,6 +344,7 @@ svg {
 .common_login__Cxwgs {
   margin-right: 2em;
 }
+
 .css-ny049c {
   color: #ffffff;
 }
@@ -325,8 +360,7 @@ svg {
   margin: 0 0 0 5px;
   height: 10px;
   width: 10px;
-  background: url(https://img2.shaadi.com/assests/2018/images/sprite-homepg-v5.png)
-    no-repeat;
+  background: url(https://img2.shaadi.com/assests/2018/images/sprite-homepg-v5.png) no-repeat;
   -webkit-background-position: 0 -492px;
   background-position: 0 -492px;
 }
@@ -337,14 +371,12 @@ svg {
   width: 30px;
   height: 30px;
   margin: 0 10px 0 0;
-  background: url(https://img2.shaadi.com/assests/2018/images/sprite-homepg-v5.png)
-    no-repeat;
+  background: url(https://img2.shaadi.com/assests/2018/images/sprite-homepg-v5.png) no-repeat;
   -webkit-background-position: 0 -40px;
   background-position: 0 -40px;
 }
 
 .outer {
-  background: rgba(0,0,0,.3);
+  background: rgba(0, 0, 0, .3);
   margin-top: 50px;
 }
-

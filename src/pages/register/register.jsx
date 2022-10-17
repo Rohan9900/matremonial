@@ -1,13 +1,53 @@
 import { Box, Button, Card, Container, Grid, makeStyles, MenuItem, Stack, TextField, Typography } from '@mui/material';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
+import firestore from '../../firebase/firebase';
 
 
 export default function Signup() {
 
 
 
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [email, setEmail] = useState("")
+    const [phoneNo, setPhoneNo] = useState("")
+    const [age, setAge] = useState("")
+    const [gender, setGender] = useState("")
+    const [status, setStatus] = useState("")
+    const [password, setPassword] = useState("")
+
+
+    const navigate = useNavigate();
+
+
+    const submitLogin = async () => {
+
+
+
+        const firestoreRef = await firestore.collection('User');
+
+        const queryRef = await firestoreRef
+            .add({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                phoneNo: phoneNo,
+                age: age,
+                gender: gender,
+                status: status,
+                password: password,
+            }).then((res) => {
+                navigate("/login");
+
+            }).catch((err) => {
+                console.log(err)
+            });
+
+
+
+    }
     return (
         <div style={{
             backgroundImage: "url('https://img.freepik.com/free-photo/concept-wedding-accessories-with-wedding-rings-white-background_185193-69924.jpg?w=2000')",
@@ -46,35 +86,55 @@ export default function Signup() {
                                     <Grid container spacing={0} sx={{ backgroundColor: "#fff2fe" }}>
                                         <Grid xs={6} md={6} >
                                             <Box sx={{ mr: 1 }} >
-                                                <TextField type={"text"} color="secondary" id="standard-basic" fullWidth label="First Name" variant="standard" />
+                                                <TextField type={"text"} color="secondary" id="standard-basic" fullWidth label="First Name" variant="standard"
+                                                    value={firstName}
+                                                    onChange={(e) => {
+                                                        setFirstName(e.target.value);
+                                                    }}
+                                                />
                                             </Box>
                                         </Grid>
                                         <Grid xs={6} md={6} >
                                             <Box>
-                                                <TextField type={"text"} color="secondary" id="standard-basic" fullWidth label="Last Name" variant="standard" />
+                                                <TextField type={"text"} color="secondary" id="standard-basic" fullWidth label="Last Name" variant="standard" value={lastName}
+                                                    onChange={(e) => {
+                                                        setLastName(e.target.value);
+                                                    }} />
                                             </Box>
                                         </Grid>
                                     </Grid>
 
                                     <Box>
-                                        <TextField type={"email"} color="secondary" id="standard-basic" fullWidth label="Email" variant="standard" />
+                                        <TextField type={"email"} color="secondary" id="standard-basic" fullWidth label="Email" variant="standard" value={email}
+                                            onChange={(e) => {
+                                                setEmail(e.target.value);
+                                            }} />
                                     </Box>
                                     <Grid container spacing={0} sx={{ backgroundColor: "#fff2fe" }}>
                                         <Grid xs={10} md={10} >
                                             <Box sx={{ mr: 1 }} >
-                                                <TextField type={"phone"} color="secondary" id="standard-basic" fullWidth label="Phone No" variant="standard" />
+                                                <TextField type={"phone"} color="secondary" id="standard-basic" fullWidth label="Phone No" variant="standard" value={phoneNo}
+                                                    onChange={(e) => {
+                                                        setPhoneNo(e.target.value);
+                                                    }} />
                                             </Box>
                                         </Grid>
                                         <Grid xs={2} md={2} >
                                             <Box>
-                                                <TextField type={"number"} color="secondary" id="standard-basic" fullWidth label="Age" variant="standard" />
+                                                <TextField type={"number"} color="secondary" id="standard-basic" fullWidth label="Age" variant="standard" value={age}
+                                                    onChange={(e) => {
+                                                        setAge(e.target.value);
+                                                    }} />
                                             </Box>
                                         </Grid>
                                     </Grid>
                                     <Grid container spacing={0} sx={{ backgroundColor: "#fff2fe" }}>
                                         <Grid xs={6} md={6} >
                                             <Box sx={{ mr: 1 }} >
-                                                <TextField select color="secondary" id="standard-basic" fullWidth label="Gender" variant="standard" >
+                                                <TextField select color="secondary" id="standard-basic" fullWidth label="Gender" variant="standard" value={gender}
+                                                    onChange={(e) => {
+                                                        setGender(e.target.value);
+                                                    }}>
 
                                                     <MenuItem value={1}>Male</MenuItem>
                                                     <MenuItem value={2}>Female</MenuItem>
@@ -83,7 +143,10 @@ export default function Signup() {
                                         </Grid>
                                         <Grid xs={6} md={6} >
                                             <Box>
-                                                <TextField select color="secondary" id="standard-basic" fullWidth label="Status" variant="standard" >
+                                                <TextField select color="secondary" id="standard-basic" fullWidth label="Status" variant="standard" value={status}
+                                                    onChange={(e) => {
+                                                        setStatus(e.target.value);
+                                                    }}>
 
                                                     <MenuItem value={1}>Married</MenuItem>
                                                     <MenuItem value={2}>Single</MenuItem>
@@ -92,7 +155,10 @@ export default function Signup() {
                                         </Grid>
                                     </Grid>
                                     <Box>
-                                        <TextField type={"password"} color="secondary" id="standard-basic" fullWidth label="Password" variant="standard" />
+                                        <TextField type={"password"} color="secondary" id="standard-basic" fullWidth label="Password" variant="standard" value={password}
+                                            onChange={(e) => {
+                                                setPassword(e.target.value);
+                                            }} />
                                     </Box>
                                     <Box>
                                         <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.7em", fontWeight: "500" }}>
@@ -100,7 +166,7 @@ export default function Signup() {
 
                                         </div>
                                     </Box>
-                                    <Button sx={{ backgroundImage: "linear-gradient(to right, #fda790, #ff5083)" }} variant="contained">Sign Up</Button>
+                                    <Button onClick={submitLogin} sx={{ backgroundImage: "linear-gradient(to right, #fda790, #ff5083)" }} variant="contained">Sign Up</Button>
                                 </Stack>
 
 
