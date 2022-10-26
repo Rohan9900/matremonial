@@ -12,6 +12,11 @@ import Testimonial from "../../components/testimonial";
 import Footer from "../../components/footer";
 
 export default function Home() {
+
+
+
+
+
   return (
     <div>
       <div className="homeFirst">
@@ -113,9 +118,9 @@ export default function Home() {
             <Stack spacing={2} direction="column" justifyContent={"center"} alignItems={"center"}>
 
               <div>
-                <IconButton sx={{ borderRadius: "50%", height: "150px", width: "150px", backgroundColor: "deeppink" }}>
+                <IconButton sx={{ borderRadius: "50%", height: "100px", width: "100px", backgroundColor: "deeppink" }}>
 
-                  <AssignmentIcon sx={{ fontSize: "5em", color: "white" }} />
+                  <AssignmentIcon sx={{ fontSize: "3.4em", color: "white" }} />
                 </IconButton>
               </div>
               <div style={{ textAlign: "center" }}>
@@ -131,9 +136,9 @@ export default function Home() {
             <Stack spacing={2} direction="column" justifyContent={"center"} alignItems={"center"}>
 
               <div>
-                <IconButton sx={{ borderRadius: "50%", height: "150px", width: "150px", backgroundColor: "deeppink" }}>
+                <IconButton sx={{ borderRadius: "50%", height: "100px", width: "100px", backgroundColor: "deeppink" }}>
 
-                  <GroupIcon sx={{ fontSize: "5em", color: "white" }} />
+                  <GroupIcon sx={{ fontSize: "3.4em", color: "white" }} />
                 </IconButton>
               </div>
               <div style={{ textAlign: "center" }}>
@@ -149,9 +154,9 @@ export default function Home() {
             <Stack spacing={2} direction="column" justifyContent={"center"} alignItems={"center"}>
 
               <div>
-                <IconButton sx={{ borderRadius: "50%", height: "150px", width: "150px", backgroundColor: "deeppink" }}>
+                <IconButton sx={{ borderRadius: "50%", height: "100px", width: "100px", backgroundColor: "deeppink" }}>
 
-                  <DuoIcon sx={{ fontSize: "5em", color: "white" }} />
+                  <DuoIcon sx={{ fontSize: "3.4em", color: "white" }} />
                 </IconButton>
               </div>
               <div style={{ textAlign: "center" }}>

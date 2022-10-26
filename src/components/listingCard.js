@@ -4,17 +4,25 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import BlockIcon from '@mui/icons-material/Block';
 import { StarBorderTwoTone } from '@mui/icons-material';
 import ReactReadMoreReadLess from "react-read-more-read-less";
+import firestore from '../firebase/firebase';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router';
 
 
 
-export default function ListingCard() {
+export default function ListingCard(props) {
+
+    const navigate = useNavigate();
+
+    const { item } = props;
+
     return (
         <Card sx={{ width: "80%", p: 1 }}>
             <Grid container spacing={2} justifyContent={"center"} alignItems={"center"}>
                 <Grid item xs={12} sm={3}>
                     <img
                         alt="Remy Sharp"
-                        src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80"
+                        src={item.img}
                         style={{ height: "40vh", width: "100% " }}
                     />
                 </Grid>
@@ -27,7 +35,7 @@ export default function ListingCard() {
                                         Matrimony ID -
                                     </Typography>
                                     <Typography sx={{ ml: 1 }} color="lightblue" variant="body2" component="body2">
-                                        SH20793749
+                                        {item.id}
                                     </Typography>
                                 </Box>
                                 <Box>
@@ -45,32 +53,37 @@ export default function ListingCard() {
                                 <tr>
                                     <td>Age / Height:
                                     </td>
-                                    <td>35 / 5' 4"</td>
+                                    <td>{item.age} / {item.height}</td>
                                 </tr>
                                 <tr>
                                     <td>Religion / Caste: </td>
-                                    <td>Hindu / Agri</td>
+                                    <td>{item.religion} / Agri</td>
                                 </tr>
                                 <tr>
                                     <td>Mother Tongue:
 
                                     </td>
-                                    <td>Marathi</td>
+                                    <td>{item?.motherTon}</td>
                                 </tr>
                                 <tr>
                                     <td>Profession:</td>
-                                    <td>Business Owner / Entrepreneur</td>
+                                    <td>{item?.profession}</td>
                                 </tr>
                                 <tr>
                                     <td>Location:</td>
-                                    <td>Mumbai, India</td>
+                                    <td>{item?.location}</td>
                                 </tr>
                             </table>
 
                         </Grid>
                         <Grid item xs={12} sm={4}>
 
-                            <Button fullWidth color="secondary" variant="contained">
+                            <Button fullWidth color="secondary" variant="contained" onClick={async () => {
+                                const firestoreRef = firestore.collection('User');
+
+                                const queryRef = await firestoreRef.doc(item.id).collection("intersted").add(item);
+                                toast("Send request");
+                            }}>
                                 I'm Intrested
                             </Button>
 
@@ -80,7 +93,9 @@ export default function ListingCard() {
                                 }
                             }}>
                                 <AccountBoxIcon />
-                                <Typography variant="body2" component="body2" sx={{ ml: 2 }} >  View full Profile</Typography>
+                                <Typography variant="body2" component="body2" sx={{ ml: 2 }} onClick={() => {
+                                    navigate(`/profile/${item?.id}`)
+                                }}>  View full Profile</Typography>
                             </Box>
 
                             <Box sx={{
@@ -110,7 +125,7 @@ export default function ListingCard() {
                             readMoreText={"Read more ▼"}
                             readLessText={"Read less ▲"}
                         >
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            {item?.des ? item?.des : "lorem"}
                         </ReactReadMoreReadLess>
 
                     </Typography>

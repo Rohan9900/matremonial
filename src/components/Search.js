@@ -8,6 +8,7 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { Button, TextField } from "@mui/material";
 import Plan from "./Plan";
+import { useNavigate } from "react-router";
 
 export default function Search() {
   const [age, setAge] = React.useState("Man");
@@ -17,11 +18,14 @@ export default function Search() {
   const [motherTounge, setMotherTounge] = React.useState("Man");
   const [isPlan, setIsplan] = React.useState(false);
 
+
+
+  const navigate = useNavigate();
+
   const handelPlan = () => {
-    setIsplan(true)
+    navigate(`/list?age=${age}&ageto=${toAge}&gender=${gender}&religion=${religion}&motherTounge=${motherTounge}`);
   }
 
-  console.log("Ankush", isPlan)
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -84,8 +88,8 @@ export default function Search() {
                     label="Gender"
                     style={{ backgroundColor: "white", color: "grey" }}
                   >
-                    <MenuItem value={10}>Man</MenuItem>
-                    <MenuItem value={21}>Woman</MenuItem>
+                    <MenuItem value={1}>Man</MenuItem>
+                    <MenuItem value={2}>Woman</MenuItem>
                   </TextField>
                 </FormControl>
               </div>
@@ -100,7 +104,9 @@ export default function Search() {
                     id="demo-simple-select-autowidth"
                     variant="standard"
                     value={age}
-                    onChange={setAge}
+                    onChange={(e) => {
+                      setAge(e.target.value)
+                    }}
                     fullWidth
                     label="Age"
                     style={{ backgroundColor: "white", color: "grey" }}
@@ -181,10 +187,10 @@ export default function Search() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={10}>Hindu</MenuItem>
-                    <MenuItem value={21}>Muslim</MenuItem>
-                    <MenuItem value={22}>Sikh</MenuItem>
-                    <MenuItem value={22}>Parsi</MenuItem>
+                    <MenuItem value={"hindu"}>Hindu</MenuItem>
+                    <MenuItem value={"muslim"}>Muslim</MenuItem>
+                    <MenuItem value={"sikh"}>Sikh</MenuItem>
+                    <MenuItem value={"parsi"}>Parsi</MenuItem>
                   </TextField>
                 </FormControl>
               </div>
@@ -207,16 +213,16 @@ export default function Search() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={10}>Hindi</MenuItem>
-                    <MenuItem value={21}>Marathi</MenuItem>
-                    <MenuItem value={22}>Bangali</MenuItem>
-                    <MenuItem value={22}>Punjabi</MenuItem>
+                    <MenuItem value={"hindi"}>Hindi</MenuItem>
+                    <MenuItem value={"marathi"}>Marathi</MenuItem>
+                    <MenuItem value={"bengali"}>Bangali</MenuItem>
+                    <MenuItem value={"punjab"}>Punjabi</MenuItem>
                   </TextField>
                 </FormControl>
               </div>
             </Grid>
             <Grid item sm={2} xs={12}>
-              <Button fullWidth style={{ marginTop: "40px" }} variant="contained" onClick={() => handelPlan()}>
+              <Button fullWidth style={{ marginTop: "40px" }} variant="contained" onClick={handelPlan}>
                 Let's Begin
               </Button>
             </Grid>

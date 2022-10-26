@@ -11,6 +11,8 @@ import ListingCard from '../../components/listingCard';
 import { Grid } from '@mui/material';
 import Footer from '../../components/footer';
 import Navbar from '../../components/navbar';
+import { useParams } from 'react-router';
+import firestore from '../../firebase/firebase';
 
 const steps = [
     {
@@ -55,6 +57,7 @@ const steps = [
 export default function Profile() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [translation, setTranslation] = React.useState(3);
+    const [data, setData] = React.useState({});
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -73,11 +76,35 @@ export default function Profile() {
 
     };
 
+    const { id } = useParams();
+
+    React.useEffect(() => {
+        async function gettingData() {
+
+            const firestoreRef = firestore.collection('User');
+
+            const queryRef = await firestoreRef.doc(id).get()
+
+
+
+
+
+            let temp = queryRef.data();
+            temp.id = queryRef.id;
+
+            setData(temp)
+
+        }
+        if (id) {
+            gettingData();
+        }
+    }, [id])
+
     return (
         <>
             <Navbar />
             <Grid sx={{ mt: 3 }} container spacing={2} justifyContent={"center"} alignItems={"center"}>
-                <ListingCard />
+                <ListingCard item={data} />
                 <Box sx={{ maxWidth: "80%" }} justifyContent={"left"}>
                     <Stepper activeStep={activeStep} orientation="vertical">
                         {steps.map((step, index) => (

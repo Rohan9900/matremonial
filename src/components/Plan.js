@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -32,6 +32,10 @@ export default function Plan(props) {
   const [open, setOpen] = React.useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+
+
+
   return (
     <div>
       <Modal
@@ -69,6 +73,7 @@ export default function Plan(props) {
                   ligula.
                 </Typography>
                 <Button
+                  onClick={handleClose}
                   style={{
                     marginTop: "40px",
                     alignItems: "center",
@@ -103,6 +108,7 @@ export default function Plan(props) {
                   ligula.
                 </Typography>
                 <Button
+                  onClick={handleClose}
                   style={{
                     marginTop: "40px",
                     alignItems: "center",
@@ -137,6 +143,7 @@ export default function Plan(props) {
                   ligula.
                 </Typography>
                 <Button
+                  onClick={handleClose}
                   style={{
                     marginTop: "40px",
                     alignItems: "center",
