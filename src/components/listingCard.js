@@ -37,6 +37,16 @@ export default function ListingCard(props) {
                                     <Typography sx={{ ml: 1 }} color="lightblue" variant="body2" component="body2">
                                         {item.id}
                                     </Typography>
+                                    
+                                </Box>
+                                <Box>
+                                    <Typography variant="body2" component="body2">
+                                        Name - 
+                                    </Typography>
+                                    <Typography sx={{ ml: 1 }} color="lightblue" variant="body2" component="body2">
+                                        {item.firstName+" "+item.lastName}
+                                    </Typography>
+                                    
                                 </Box>
                                 <Box>
                                     <Typography variant="body2" component="body2">
